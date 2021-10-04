@@ -30,10 +30,28 @@ class Dense:
 
     def init_parameter(self):
         # self.weight = np.random.rand(self.output_shape, self.input_shape)
-        # self.weight = np.array([[0.5, -1, -0.5]])
-        self.weight = np.array([[0,0]])
-        if self.bias is None:
-            # self.bias = np.random.rand(self.output_shape, 1)
-            # self.bias = np.array([[0.5]])
-            self.bias = np.array([[1]])
+        self.weight = np.zeros([self.output_shape, self.input_shape])
 
+        # self.weight = np.array([[0.5, -1, -0.5]])
+        # self.weight = np.array([[0, 0]])
+        if self.bias is None:
+            self.bias = np.random.rand(self.output_shape, 1)
+            # self.bias = np.array([[0.5]])
+            self.bias = np.array([[0]])
+
+    def basic_rule(self, t, p):
+        print(f't = {t}')
+        print(f'p = {p}')
+        self.weight += t @ p.T
+
+    def learning_rate(self, t, p, alpha):
+        self.weight += alpha * t @ p.T
+
+    def filtered_learning_rate(self, t, p, alpha, gamma):
+        self.weight = (1 - gamma) * self.weight + alpha * t @ p.T
+
+    def delta_rule(self, t, p, a, alpha):
+        self.weight += alpha * (t - a) @ p.T
+
+    def unsupervised_hebb(self, a, p, alpha):
+        self.weight += alpha * a @ p.T

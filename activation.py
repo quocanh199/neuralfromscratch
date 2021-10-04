@@ -33,5 +33,5 @@ class Hardlim:
 
     def __call__(self, z):
         z[z >= 0] = 1
-        z[z < 0] = 0
+        z[z < 0] = -1
         return z
