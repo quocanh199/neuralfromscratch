@@ -19,7 +19,7 @@ class Sigmoid:
         return a
 
 
-class Orgin:
+class Origin:
     def __init__(self):
         pass
 

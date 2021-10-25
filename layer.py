@@ -1,6 +1,6 @@
 import numpy as np
 
-from activation import ReLU, Sigmoid, Orgin, Hardlim
+from activation import ReLU, Sigmoid, Origin, Hardlim
 
 
 class Dense:
@@ -21,7 +21,7 @@ class Dense:
         elif activation == 'Sigmoid':
             self.activation = Sigmoid()
         elif activation == 'Origin':
-            self.activation = Orgin()
+            self.activation = Origin()
         elif activation == 'Hardlim':
             self.activation = Hardlim()
 
@@ -29,15 +29,15 @@ class Dense:
         return self.activation(np.dot(self.weight, x) + self.bias)
 
     def init_parameter(self):
-        # self.weight = np.random.rand(self.output_shape, self.input_shape)
-        self.weight = np.zeros([self.output_shape, self.input_shape])
+        self.weight = np.random.rand(self.output_shape, self.input_shape)
+        # self.weight = np.zeros([self.output_shape, self.input_shape])
 
         # self.weight = np.array([[0.5, -1, -0.5]])
         # self.weight = np.array([[0, 0]])
         if self.bias is None:
             self.bias = np.random.rand(self.output_shape, 1)
             # self.bias = np.array([[0.5]])
-            self.bias = np.array([[0]])
+            # self.bias = np.array([[0]])
 
     def basic_rule(self, t, p):
         print(f't = {t}')
